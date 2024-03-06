@@ -1,0 +1,49 @@
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Sign Up</h3>
+
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="signUpForm">
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input formControlName="email" type="text" name="" placeholder="enter email" id="">
+                                </div>
+                            </div>
+                            <small *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')" class="text-danger">* User Name Is required</small>
+
+                            <div class="form-group pt-3">
+                                <div class="input-field">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="password" [type]="type"  name="" placeholder="enter password">
+                                    <span (click)="HideShowPass()" class="fa {{eyeIcon}} p-2"></span>
+
+                                </div>
+                            </div>
+                            <small *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')" class="text-danger">* User Name Is required</small>
+
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="signUpForm.controls['confirmpass'].dirty && signUpForm.hasError('required','confirmpass')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="confirmpass" [type]="type"  name="" placeholder=" Confirm password">
+
+                                </div>
+                            </div>
+                            <small *ngIf="signUpForm.controls['confirmpass'].dirty && signUpForm.hasError('required','confirmpass')" class="text-danger">* User Name Is required</small>
+
+                            <button (click)="onRegister()"  type="submit" class="btn btn-primary btn-block mt-4 w-100">Sign Up</button>
+                        <div class="text-center pt-4 text-muted">
+                            Already Have Account?
+                        <a routerLink="/login" id="forget">Login</a>                       </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

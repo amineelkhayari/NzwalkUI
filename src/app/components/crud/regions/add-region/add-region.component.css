@@ -1,0 +1,18 @@
+.none{
+    display: none !important;
+}
+.block{
+    display:  block !important;
+}
+
+a.Active {
+    background: aliceblue;
+    text-decoration: none;
+    color: black;
+}
+
+a.NoActive {
+    background: black;
+    text-decoration: none;
+    color: aliceblue;
+}

@@ -1,0 +1,160 @@
+<!-- Add New User Modal Start -->
+
+
+<div class="modal  {{ show }}" tabindex="-1" id="addNewUserModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New User</h5>
+        <button type="button" (click)="addShow()" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="saveForm" id="add-user-form" class="p-2" novalidate>
+          <div class="row mb-3 gx-3">
+            <div class="col">
+              <input type="text" formControlName="code" class="form-control form-control-lg"
+                placeholder="Enter Code Name" required>
+              <div class="invalid-feedback">Code Required!</div>
+            </div>
+
+            <div class="col">
+              <input type="text" formControlName="name" class="form-control form-control-lg"
+                placeholder="Enter Last Name" required>
+              <div class="invalid-feedback">Name Required!</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" formControlName="regionImageUrl" class="form-control form-control-lg"
+              placeholder="Enter E-mail" required>
+            <div class="invalid-feedback">Region Image!</div>
+            <input type="file" (change)="hello($event)">
+
+
+          </div>
+
+
+
+          <div class="mb-3">
+            <button (click)="onSave()" type="submit" class="btn btn-primary btn-block btn-lg" id="add-user-btn">Save
+              Region</button>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add New User Modal End -->
+
+<!-- Edit User Modal Start -->
+<div class="modal {{ show_update }}" tabindex="-1" id="editUserModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit This User</h5>
+        <button type="button" (click)="updateShow('')" class="btn-close" data-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="saveForm" id="add-user-form" class="p-2" novalidate>
+          <div class="row mb-3 gx-3">
+            <div class="col">
+              <input type="text" formControlName="code" class="form-control form-control-lg"
+                placeholder="Enter Code Name" required>
+              <div class="invalid-feedback">Code Required!</div>
+            </div>
+
+            <div class="col">
+              <input type="text" formControlName="name" class="form-control form-control-lg"
+                placeholder="Enter Last Name" required>
+              <div class="invalid-feedback">Name Required!</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" formControlName="regionImageUrl" class="form-control form-control-lg"
+              placeholder="Enter E-mail" required>
+            <div class="invalid-feedback">Region Image!</div>
+          </div>
+
+
+
+          <div class="mb-3">
+            <button (click)="onUpdate()" type="submit" class="btn btn-primary btn-block btn-lg"
+              id="add-user-btn">UpdateRegion</button>
+
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Edit User Modal End -->
+
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-lg-12 d-flex justify-content-between align-items-center">
+      <div>
+        <h4 class="text-primary">All Regions</h4>
+      </div>
+      <div>
+        <button class="btn btn-primary" (click)="addShow()" type="button" data-toggle="modal"
+          data-target="#addNewUserModal">Add New User</button>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="showAlert"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered text-center">
+          <thead>
+            <tr>
+              <th >ID</th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Region Image</th>
+              <th>Actions</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let region of AllRegion">
+              <td style="cursor: pointer;" (click)="copy(region.id)">copy id</td>
+              <td>{{ region.code }}</td>
+              <td>{{region.name}} </td>
+              <td><img src="{{region.regionImageUrl}}"></td>
+              <td>
+                <a id="{{ region.id }}" (click)="updateShow(region.id)" class=" btn-success"><span
+                    class="fa fa-edit"></span></a>
+                <button id="{{ region.id }}" (click)="deleteRegion(region.id)" class=" btn-danger"><span
+                    class="fa fa-trash"></span></button>
+              </td>
+            </tr>
+
+          </tbody>
+
+          <tfoot style="display: flex;">
+            <a style="cursor: pointer;" [routerLink]="" *ngIf="pagination.HasPrev" (click)="LoadPage(pagination.CurrentPage - 1)" >{{ (pagination.HasPrev ? 'Prev-'+(pagination.CurrentPage - 1) : '') }}</a>
+
+            <tr *ngFor="let f of [].constructor(pagination.TotalPages); let r = index ">
+                <a  style="cursor: pointer;  " class="{{ IsCurrentPage(pagination.CurrentPage, r+1) }}" (click)="LoadPage(r+1)" >{{r+1}}</a>
+            </tr>
+            <a style="cursor: pointer;" [routerLink]="" *ngIf="pagination.HasNext" (click)="LoadPage(pagination.CurrentPage + 1)" >{{ (pagination.HasNext ? 'Next-'+(pagination.CurrentPage + 1) : '') }}</a>
+
+            
+          </tfoot>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

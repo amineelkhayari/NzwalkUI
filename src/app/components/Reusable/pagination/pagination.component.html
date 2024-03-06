@@ -1,0 +1,13 @@
+<div class="clearfix">
+   <div class="hint-text">showing <b>5</b> out of <b>{{ TotalCount }}</b></div>
+   <ul class="pagination">
+
+
+      <li *ngIf="HasPrev" class="page-item"  ><a  (click)="PrevNextPage(CurrentPage-1)" class="page-link">Previous</a></li>
+      <li *ngFor="let f of [].constructor(totalePage); let r = index " class="page-item ">
+         <a (click) = "PrevNextPage(r+1)" class="page-link {{  (r+1) !=CurrentPage  || 'active'}}">{{ r+1 }}</a>
+      </li>
+
+      <li *ngIf="HasNext" class="page-item"><a (click)="PrevNextPage(CurrentPage+1)" class="page-link">Next</a></li>
+   </ul>
+</div>

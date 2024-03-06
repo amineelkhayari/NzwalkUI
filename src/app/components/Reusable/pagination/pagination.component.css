@@ -1,0 +1,6 @@
+.active{
+    color: white !important;
+}
+.pointer_event{
+    pointer-events: none;
+}

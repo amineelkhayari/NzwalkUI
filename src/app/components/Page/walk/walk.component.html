@@ -1,0 +1,49 @@
+<!-- Edit Modal HTML -->
+<div class="modal fade {{form.class}}" tabindex="-1" id="{{form.id}}" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{form.formTitle}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form [formGroup]="dyFormGroup" action="www.google.com">
+
+                <div class="modal-body">
+
+                    <ng-container *ngFor="let control of form.formControls">
+                        <!-- *ngIf="['text', 'email'].includes(control.type)" -->
+                        <div class="form-group" *ngIf="['text','password','email','number'].includes(control.type)">
+                            <label>{{ control.label }}</label>
+                            <input formControlName="{{control.name}}" [type]="control.type" class="{{control.class}}"
+                                [placeholder]="control.placerHolder" />
+                        </div>
+                        <div class="form-group" *ngIf="['file'].includes(control.type)">
+                            <label>{{ control.label }}</label>
+                            <input (change)="uploadImage($event,control.passValue)" formControlName="{{control.name}}"
+                                [type]="control.type" class="{{control.class}}" [placeholder]="control.placerHolder" />
+                            <input type="hidden" formControlName="{{control.name}}" />
+                        </div>
+                        <div *ngIf="control.type === 'select'" class="form-group">
+                            <label>{{control.label}}</label>
+                            <select formControlName="{{control.name}}" class="{{control.class}}">
+                                <option selected value="">{{control.placerHolder}}</option>
+                                <ng-container *ngFor="let opt of control.options">
+                                    <option value="{{opt.id}}">{{opt.code}}</option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </ng-container>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button (click)="onSubmit()" type="button" class="btn btn-success">{{form.saveBtnTitle}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Edit Modal HTML -->

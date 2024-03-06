@@ -1,0 +1,46 @@
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th><span class="custom-checkbox">
+                    <input type="checkbox" id="selectAll">
+                    <label for="selectAll"></label></span>
+            </th>
+            <th *ngFor="let head of Title">{{ head }}</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let region of GridData">
+            <th><span class="custom-checkbox">
+                    <input type="checkbox" id="checkbox1" name="option[]" value="{{region.id}}">
+                    <label for="checkbox1"></label></span></th>
+           
+
+            <th *ngFor="let head of Title">
+                <i *ngIf="head === 'id'" class="material-icons" (click)="copy(region[head])" title="{{region[head]}}">content_copy </i>
+
+
+                {{ head != 'id' ? region[head] :'' }}
+            </th>
+
+            <th>
+                <a href="/1/#editEmployeeModal" class="edit" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Edit"></i>
+                </a>
+                <a href="#deleteEmployeeModal" (click)="deleter(region.id)" class="delete" data-toggle="modal">
+                    <i class="material-icons" data-toggle="tooltip" title="Delete"></i>
+                </a>
+            </th>
+        </tr>
+
+
+
+    </tbody>
+
+
+</table>
+<app-pagination [totalePage]="Pagination.TotalPages" [CurrentPage]="Pagination.CurrentPage"
+    [HasNext]="Pagination.HasNext" [HasPrev]="Pagination.HasPrev" [TotalCount]="Pagination.TotalCount"
+    (EventClicker)="parentCall($event)"></app-pagination>
