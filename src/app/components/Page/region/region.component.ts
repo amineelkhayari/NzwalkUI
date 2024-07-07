@@ -13,7 +13,7 @@ export class RegionComponent implements OnInit {
   @Input() title:string='';
   DataFor:IMainContent = {
     PageTitle:"Region Manager",
-    UrlApi:"http://localhost:5298/api/Regions",
+    UrlApi:"http://nzwalk.runasp.net/api/Regions",
     FormsDrawer:registrationForms
   }
   ngOnInit(): void {

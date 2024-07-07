@@ -115,22 +115,22 @@ export class WalkerComponent implements OnInit {
 
     DataForm: IMainContent = {
         PageTitle: "Walker Manager",
-        UrlApi: "http://localhost:5298/api/Walks",
+        UrlApi: "http://nzwalk.runasp.net/api/Walks",
         FormsDrawer: this.WalkerDrawerForm
     }
 
     LoadSelect(){
-        let page:IPageParam={
-            itemPerPage:5,
-            page:2
-        }
-        this.generic.GetAllData("http://localhost:5298/api/regions",page)
-        .subscribe({
-            next:(res)=>{
-                console.log("result",res)
-            }
-        });
-        this.regionCall.getAllRegion(0, "http://localhost:5298/api/Regions/OptionId")
+        // let page:IPageParam={
+        //     itemPerPage:5,
+        //     page:1
+        // }
+        // this.generic.GetAllData("http://nzwalk.runasp.net/api/regions",page)
+        // .subscribe({
+        //     next:(res)=>{
+        //         console.log("result",res)
+        //     }
+        // });
+        this.regionCall.getAllRegion(0, "http://nzwalk.runasp.net/api/Regions/OptionId")
         .subscribe({
             next: (resSuccess:ServiceResponse) => {
                 

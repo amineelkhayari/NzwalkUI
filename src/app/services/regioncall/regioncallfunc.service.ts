@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class RegioncallfuncService { 
   
   constructor(private http:HttpClient) { }
-  private baseUrler:string = "https://localhost:44398/api/Regions";
+  private baseUrler:string = "http://nzwalk.runasp.net/api/Regions";
   public baseUrl?:string;
   
   getAllRegion(page:number,baseUri:string){
@@ -26,6 +26,6 @@ export class RegioncallfuncService {
     return  this.http.delete<any>(this.baseUrl+'/'+id);
   }
   imageUploader(formData:FormData){
-    return this.http.post("http://localhost:5298/api/ImageUp/Upload", formData);
+    return this.http.post("http://nzwalk.runasp.net/api/ImageUp/Upload", formData);
   }
 }

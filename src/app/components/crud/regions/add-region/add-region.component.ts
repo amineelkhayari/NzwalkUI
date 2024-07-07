@@ -76,7 +76,7 @@ export class AddRegionComponent implements OnInit {
 
   getAllRegion(page?:number){
     if(page ==null) page=1
-    this.regionmethod.getAllRegion(page, "https://localhost:44398/api/Regions")
+    this.regionmethod.getAllRegion(page, "http://nzwalk.runasp.net/api/Regions")
       .subscribe({
         next: (resSuccess) => {
           if(resSuccess.success){

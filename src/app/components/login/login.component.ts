@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit{
             {
              sessionStorage.setItem("loginID",resSucess.jwtToken);
              localStorage.setItem('userData',resSucess.jwtToken);
+
               const poyload = this.auth.decodeToken();
+              
               this.userStore.setEmailFroStore(poyload["Email"]);
               this.userStore.setRoleFroStore(poyload["role"]);
              this.userStore.getEmailFromStore()

@@ -7,7 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 //private baseUrl:string = "https://socialmedia-d09b0c.ingress-haven.ewp.live/wp-json/account/register/";
-  private baseUrl:string = "https://localhost:44398/api/Auth/Login";
+  private baseUrl:string = "http://nzwalk.runasp.net/api/Auth/Login";
   private userPoyload:any;
   constructor(private http:HttpClient, private router:Router) { 
     this.userPoyload = this.decodeToken();
